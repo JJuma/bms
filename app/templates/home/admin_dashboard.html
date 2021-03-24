@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block body %}
+<div>
+<!-- controllers -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg">
+      <div class="card graph">
+        <div class="card-body">
+          
+              {% if rooms %}
+              <label for="rooms">rooms:</label>
+              <select  name="rooms" id="rooms" class="rooms-select">
+                {% for room in rooms %}
+                <option value="{{ room.id }}">{{ room.id }}</a></option>
+                {% endfor %}
+              </select>
+              {% endif %}
+              <!-- lights -->
+              <!-- <button type="button" class="btn btn-primary button">Lights Switch: <span id="lights"></span>ON</button> -->
+              <label for="lights">lights:</label>
+              <select name="lights" id="lights" class="rooms-select">
+                <option value="OFF">OFF</option>
+                <option value="ON">ON</option>
+                <option value="AUTO">AUTO</option>
+              </select>
+              <!-- fan -->
+              <!-- <button type="button" class="btn btn-secondary button">Fan Switch: <span id="Fan"></span>OFF</button> -->
+              <label for="fan">fan:</label>
+              <select name="fan" id="fan" class="rooms-select">
+                <option value="OFF">OFF</option>
+                <option value="ON">ON</option>
+                <option value="AUTO">AUTO</option>
+              </select>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- occupancy chart -->
+    <div class="col-lg-6">
+      <div class="card graph">
+        <div class="card-body">
+          <h4 class="card-title">Occupany Chart <span style="text-align: center;"> Current Occupany: <span id="current_occupancy">0</span></span></h4>
+          <canvas
+            id="occupancy"
+            style="display: block; height: 188px; width: 629px; padding-right: 20px"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- Energy Usage chart -->
+    <div class="col-lg-6">
+      <div class="card graph">
+        <div class="card-body">
+          <h4 class="card-title">Energy Usage Chart</h4>
+          <canvas
+            id="energy"
+            style="display: block; height: 188px; width: 629px;  padding-right: 20px"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- temperature chart -->
+    <div class="col-lg-6">
+      <div class="card graph">
+        <div class="card-body">
+          <h4 class="card-title">Temperature Chart</h4>
+          <canvas
+            id="temp"
+            style="display: block; height: 188px; width: 629px;  padding-right: 20px"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- humidity chart -->
+    <div class="col-lg-6">
+      <div class="card graph">
+        <div class="card-body">
+          <h4 class="card-title">Humidity Chart</h4>
+          <canvas
+            id="humid"
+            style="display: block; height: 188px; width: 629px;  padding-right: 20px"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- air quality chart -->
+    <div class="col-lg-6">
+      <div class="card graph">
+        <div class="card-body">
+          <h4 class="card-title">Air Quality Chart</h4>
+          <canvas
+            id="airQ"
+            style="display: block; height: 188px; width: 629px;  padding-right: 20px"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+ 
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/mqtt.js') }}"></script>
+<!-- 
+<script src="{{ url_for('static', filename='js/button.js') }}"></script>
+-->
+
+
+
+
+{% endblock %}
+
+<!-- 
+<div class="card-body" id="room-head">
+  <div class="col-lg-6">
+      
+      <button type="button" class="btn btn-primary button">Lights Switch: <span id="lights"></span>ON</button>
+      
+      <button type="button" class="btn btn-secondary button">Fan Switch: <span id="Fan"></span>OFF</button>
+      {% if rooms %}
+  </div>
+  <div class="col-lg-6">
+      <select  name="rooms" id="rooms" class="pull-right rooms-select">
+        {% for room in rooms %}
+        <option value="{{ room.id }}">{{ room.id }}</a></option>
+        {% endfor %}
+      </select>
+      {% endif %}
+  </div>
+
+</div> -->

@@ -128,7 +128,7 @@ def add_node():
             flash('You have successfully added a new node.')
         except:
             # in case node name already exists
-            flash('Error: node name already exists.')
+            flash('Error: node name already exists or room does not exist.')
 
         # redirect to nodes page
         return redirect(url_for('admin.list_nodes'))
@@ -216,7 +216,7 @@ def add_sensor():
             flash('You have successfully added a new sensor.')
         except:
             # in case sensor name already exists
-            flash('Error: sensor name already exists.')
+            flash('Error: sensor name already exists or node does not exist.')
 
         # redirect to sensors page
         return redirect(url_for('admin.list_sensors'))
@@ -309,7 +309,7 @@ def add_controller():
             flash('You have successfully added a new controller.')
         except:
             # in case controller name already exists
-            flash('Error: controller name already exists.')
+            flash('Error: controller name already exists or node does not exist.')
 
         # redirect to controllers page
         return redirect(url_for('admin.list_controllers'))
@@ -365,4 +365,7 @@ def delete_controller(id):
 
 
 
-
+# from sqlalchemy.exc import SQLAlchemyError
+        # except SQLAlchemyError as e:
+        #     error = str(e.__dict__['orig'])
+        #     flash(error)

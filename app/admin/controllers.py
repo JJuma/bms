@@ -17,7 +17,7 @@ if sys.platform.lower() == "win32":
     os.system('color')
 
 
-
+#database fetch data for display on website
 @admin.route('/sql/<room>')
 @admin.route('/sql/<room>/<update>')
 def scheduled_sql(room,update = None):
@@ -76,6 +76,9 @@ def scheduled_sql(room,update = None):
 
 
 
+
+# MQTT configuration for buttons
+
 def on_log(client, userdata, level, buf):
     print("log: "+buf)
 
@@ -102,9 +105,9 @@ def on_message(client, userdata, msg):
 
 @admin.route('/mqtt/<room>/<controller>/<event>')
 def mqtt_func(room,controller,event):
-    broker = "192.168.0.28"
+    broker = "165.227.162.218"
     #create new instance
-    client = mqtt.Client("python1")
+    client = mqtt.Client("web")
 
     #bind call back function
     client.on_connect = on_connect

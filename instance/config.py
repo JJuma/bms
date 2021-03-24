@@ -1,4 +1,7 @@
 SECRET_KEY = 'p9Bv<3Eid9%$i01'
 #'mysql://username:password@localhost/db_name'
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://baf36199c808ee:2ca8eb78@eu-cdbr-west-03.cleardb.net/heroku_51838af9ecf1841'
+<<<<<<< HEAD
 
+=======
+>>>>>>> 268695f90ebde809b25a2474e09dd72efd1d8eda

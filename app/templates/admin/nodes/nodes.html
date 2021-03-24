@@ -17,6 +17,7 @@
               <thead>
                 <tr>
                   <th width="15%"> ID </th>
+                  <th width="15%"> room </th>
                   <th width="40%"> Description </th>
                   <th width="15%"> Edit </th>
                   <th width="15%"> Delete </th>
@@ -26,6 +27,7 @@
               {% for node in nodes %}
                 <tr>
                   <td> {{ node.id }} </td>
+                  <td> {{ node.room }} </td>
                   <td> {{ node.description }} </td>
                   <td>
                     <a href="{{ url_for('admin.edit_node', id=node.id) }}">

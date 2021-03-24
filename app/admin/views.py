@@ -119,8 +119,8 @@ def add_node():
     form = NodesForm()
     if form.validate_on_submit():
         node = Nodes(id=form.id.data,
-                        room=form.room.data)#,
-                                # description=form.description.data)
+                        room=form.room.data,
+                                 description=form.description.data)
         try:
             # add node to the database
             db.session.add(node)
@@ -151,6 +151,7 @@ def edit_node(id):
     if form.validate_on_submit():
         node.id = form.id.data
         node.room = form.room.data
+        node.description = form.description.data
         db.session.commit()
         flash('You have successfully edited the node.')
 

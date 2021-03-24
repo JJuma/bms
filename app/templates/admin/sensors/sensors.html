@@ -17,6 +17,7 @@
               <thead>
                 <tr>
                   <th width="15%"> ID </th>
+                  <th width="15%"> Node </th>
                   <th width="40%"> Description </th>
                   <th width="15%"> Edit </th>
                   <th width="15%"> Delete </th>
@@ -26,6 +27,7 @@
               {% for sensor in sensors %}
                 <tr>
                   <td> {{ sensor.id }} </td>
+                  <td> {{ sensor.node }} </td>
                   <td> {{ sensor.description }} </td>
                   <td>
                     <a href="{{ url_for('admin.edit_sensor', id=sensor.id) }}">

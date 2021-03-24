@@ -17,6 +17,7 @@
               <thead>
                 <tr>
                   <th width="15%"> ID </th>
+                  <th width="15%"> Node </th>
                   <th width="40%"> Description </th>
                   <th width="15%"> Edit </th>
                   <th width="15%"> Delete </th>
@@ -26,6 +27,7 @@
               {% for controller in controllers %}
                 <tr>
                   <td> {{ controller.id }} </td>
+                  <td> {{ controller.node }} </td>
                   <td> {{ controller.description }} </td>
                   <td>
                     <a href="{{ url_for('admin.edit_controller', id=controller.id) }}">

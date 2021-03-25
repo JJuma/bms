@@ -25,7 +25,7 @@ def scheduled_sql(room,update = None):
         process chart data
     """
     
-    sensors = ["Temperature1","Humidity1","airQuality1","Energy1","Occupancy1"]
+    sensors = ["Temperature1","Humidity1","Energy1","Occupancy1"]
     length = len(sensors)
     for i in range(length):
         sensors[i] = room + sensors[i]

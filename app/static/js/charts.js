@@ -130,49 +130,6 @@ var humidChart = new Chart(humid, {
     },
 });
 
-//airQ graph
-var airQ = document.getElementById("airQ").getContext("2d");
-var airQChart = new Chart(airQ, {
-    type: "line",
-    data: {
-    labels: [],
-    datasets: [
-        {
-        label: "Air Quality",
-        data: [],
-        fill: false,
-        borderColor: "rgb(157, 128, 209)",
-        lineTension: 0.1,
-        },
-    ],
-    },
-    options: {
-    scales: {
-        xAxes: [
-        {
-            type: "time",
-            time: {
-            parser: "YYYY-MM-DD hh:mm:ss",
-            unitStepSize: 20,
-            displayFormats: {
-                hour: "h:mm:ss",
-            },
-            distribution: "linear",
-            },
-        },
-        ],
-        yAxes: [
-        {
-            ticks: {
-            beginAtZero: true,
-            callback: function(value) {if (value % 1 === 0) {return value;}},
-            },
-        },
-        ],
-    },
-    },
-});
-
 //energy graph
 var energy = document.getElementById("energy").getContext("2d");
 var energyChart = new Chart(energy, {
@@ -219,7 +176,7 @@ var energyChart = new Chart(energy, {
 
 
 //selector
-var temp_room_sensors = ["Occupancy1","Temperature1","Humidity1","airQuality1","Energy1"];
+var temp_room_sensors = ["Occupancy1","Temperature1","Humidity1","Energy1"];
 var room_sensors_data = [];
 var room_sensors_time = [];
 var room = "";
@@ -263,7 +220,6 @@ function initLiveUpdate() {
         occupancyChart.data.datasets[0].data = data[room_sensors_data[0]];
         occupancyChart.data.labels = data[room_sensors_time[0]];
         occupancyChart.update();
-        
         if (typeof data[room_sensors_data[0]] === 'undefined'){
             document.getElementById("current_occupancy").innerHTML = 0;
         }else{
@@ -274,18 +230,29 @@ function initLiveUpdate() {
         tempChart.data.datasets[0].data = data[room_sensors_data[1]];
         tempChart.data.labels = data[room_sensors_time[1]];
         tempChart.update();
+        if (typeof data[room_sensors_data[1]] === 'undefined'){
+            document.getElementById("current_temp").innerHTML = 0;
+        }else{
+            document.getElementById("current_temp").innerHTML = data[room_sensors_data[1]][0];
+        }
         //humidity
         humidChart.data.datasets[0].data = data[room_sensors_data[2]];
         humidChart.data.labels = data[room_sensors_time[2]];
         humidChart.update();
-        //air quality
-        airQChart.data.datasets[0].data = data[room_sensors_data[3]];
-        airQChart.data.labels = data[room_sensors_time[3]];
-        airQChart.update();
+        if (typeof data[room_sensors_data[2]] === 'undefined'){
+            document.getElementById("current_humid").innerHTML = 0;
+        }else{
+            document.getElementById("current_humid").innerHTML = data[room_sensors_data[2]][0];
+        }
         //energy
-        energyChart.data.datasets[0].data = data[room_sensors_data[4]];
-        energyChart.data.labels = data[room_sensors_time[4]];
+        energyChart.data.datasets[0].data = data[room_sensors_data[3]];
+        energyChart.data.labels = data[room_sensors_time[3]];
         energyChart.update();
+        if (typeof data[room_sensors_data[3]] === 'undefined'){
+            document.getElementById("current_energy").innerHTML = 0;
+        }else{
+            document.getElementById("current_energy").innerHTML = data[room_sensors_data[3]][0];
+        }
         })
         .catch(function (error) {
         console.log(error);
@@ -341,7 +308,12 @@ function startLiveUpdate() {
 
                 tempChart.data.datasets[0].data.unshift(data[room_sensors_data[1]]);
                 tempChart.data.labels.unshift(data[room_sensors_time[1]]);
-                tempChart.update();   
+                tempChart.update();
+                if (typeof data[room_sensors_data[1]] === 'undefined'){
+                    document.getElementById("current_temp").innerHTML = 0;
+                }else{
+                    document.getElementById("current_temp").innerHTML = data[room_sensors_data[1]];
+                }   
         }
         //humidity
         if (typeof data[room_sensors_time[2]] !== 'undefined' &&
@@ -351,24 +323,26 @@ function startLiveUpdate() {
                 humidChart.data.datasets[0].data.unshift(data[room_sensors_data[2]]);
                 humidChart.data.labels.unshift(data[room_sensors_time[2]]);
                 humidChart.update(); 
+                if (typeof data[room_sensors_data[2]] === 'undefined'){
+                    document.getElementById("current_humid").innerHTML = 0;
+                }else{
+                    document.getElementById("current_humid").innerHTML = data[room_sensors_data[2]];
+                }
         }
-        //air quality
-        if (typeof data[room_sensors_time[3]] !== 'undefined' &&
-            typeof airQChart.data.labels !== 'undefined' &&
-            data[room_sensors_time[3]] !== airQChart.data.labels[0]){
 
-                airQChart.data.datasets[0].data.unshift(data[room_sensors_data[3]]);
-                airQChart.data.labels.unshift(data[room_sensors_time[3]]);
-                airQChart.update();  
-        }
         //energy
-        if (typeof data[room_sensors_time[4]] !== 'undefined' &&
+        if (typeof data[room_sensors_time[3]] !== 'undefined' &&
             typeof energyChart.data.labels !== 'undefined' &&
-            data[room_sensors_time[4]] !== energyChart.data.labels[0]){
+            data[room_sensors_time[3]] !== energyChart.data.labels[0]){
                 
-                energyChart.data.datasets[0].data.unshift(data[room_sensors_data[4]]);
-                energyChart.data.labels.unshift(data[room_sensors_time[4]]);
+                energyChart.data.datasets[0].data.unshift(data[room_sensors_data[3]]);
+                energyChart.data.labels.unshift(data[room_sensors_time[3]]);
                 energyChart.update();
+                if (typeof data[room_sensors_data[3]] === 'undefined'){
+                    document.getElementById("current_energy").innerHTML = 0;
+                }else{
+                    document.getElementById("current_energy").innerHTML = data[room_sensors_data[3]];
+                }
         }
         
         })

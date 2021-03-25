@@ -21,15 +21,8 @@ var occupancyChart = new Chart(occupancy, {
         {
             categoryPercentage: 1.0,
             barPercentage: 1.0,
-            type: "time",
-            time: {
-            parser: "YYYY-MM-DD hh:mm:ss",
-            unitStepSize: 50,
-            displayFormats: {
-                hour: "h:mm:ss",
-            },
-            distribution: "linear",
-            },
+            type: 'time',
+            distribution: 'series'
         },
         ],
         yAxes: [
@@ -64,15 +57,8 @@ var tempChart = new Chart(temp, {
     scales: {
         xAxes: [
         {
-            type: "time",
-            time: {
-            parser: "YYYY-MM-DD hh:mm:ss",
-            unitStepSize: 50,
-            displayFormats: {
-                hour: "h:mm:ss",
-            },
-            distribution: "linear",
-            },
+            type: 'time',
+            distribution: 'series'
         },
         ],
         yAxes: [
@@ -107,15 +93,8 @@ var humidChart = new Chart(humid, {
     scales: {
         xAxes: [
         {
-            type: "time",
-            time: {
-            parser: "YYYY-MM-DD hh:mm:ss",
-            unitStepSize: 20,
-            displayFormats: {
-                hour: "h:mm:ss",
-            },
-            distribution: "linear",
-            },
+            type: 'time',
+            distribution: 'series'
         },
         ],
         yAxes: [
@@ -150,15 +129,8 @@ var energyChart = new Chart(energy, {
     scales: {
         xAxes: [
         {
-            type: "time",
-            time: {
-            parser: "YYYY-MM-DD hh:mm:ss",
-            unitStepSize: 20,
-            displayFormats: {
-                hour: "h:mm:ss",
-            },
-            distribution: "linear",
-            },
+            type: 'time',
+            distribution: 'series'
         },
         ],
         yAxes: [

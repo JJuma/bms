@@ -321,7 +321,7 @@ function startLiveUpdate() {
         .catch(function (error) {
         console.log(error);
         });
-    }, 5000);
+    }, 10000);
 }
 
 

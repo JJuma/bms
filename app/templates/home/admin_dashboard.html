@@ -9,7 +9,7 @@
       <div class="card graph">
         <div class="card-body">
           {% if rooms %}
-          <label for="rooms" style="margin-left: 30px;">rooms:</label>
+          <label for="rooms" style="margin-left: 30px;">Room:</label>
           <select  name="rooms" id="rooms" class="rooms-select">
             {% for room in rooms %}
             <option value="{{ room.id }}">{{ room.id }}</a></option>
@@ -17,7 +17,7 @@
           </select>
           <!-- lights -->
           <!-- <button type="button" class="btn btn-primary button">Lights Switch: <span id="lights"></span>ON</button> -->
-          <label for="lights">lights:</label>
+          <label for="lights">Light:</label>
           <select name="lights" id="lights" class="rooms-select">
             <option value="OFF">OFF</option>
             <option value="ON">ON</option>
@@ -25,7 +25,7 @@
           </select>
           <!-- fan -->
           <!-- <button type="button" class="btn btn-secondary button">Fan Switch: <span id="Fan"></span>OFF</button> -->
-          <label for="fan">fan:</label>
+          <label for="fan">Fan:</label>
           <select name="fan" id="fan" class="rooms-select">
             <option value="OFF">OFF</option>
             <option value="ON">ON</option>
@@ -58,7 +58,7 @@
       <div class="card graph">
         <div class="card-body">
           <h4 class="card-title">Energy Usage Chart</h4>
-          <span style="margin-left: 20px;"> Current Energy Usage: <span id="current_energy">0</span></span>
+          <span style="margin-left: 20px;"> Current Energy Usage: <span id="current_energy">0</span> W</span>
           <canvas
             id="energy"
             style="display: block; height: 188px; width: 629px;  padding-right: 20px"
@@ -71,7 +71,7 @@
       <div class="card graph">
         <div class="card-body">
           <h4 class="card-title">Temperature Chart</h4>
-          <span style="margin-left: 20px;"> Current Temperature: <span id="current_temp">0</span></span>
+          <span style="margin-left: 20px;"> Current Temperature: <span id="current_temp">0</span> °C</span>
           <canvas
             id="temp"
             style="display: block; height: 188px; width: 629px;  padding-right: 20px"
@@ -84,7 +84,7 @@
       <div class="card graph">
         <div class="card-body">
           <h4 class="card-title">Humidity Chart</h4>
-          <span style="margin-left: 20px;"> Current Humidity: <span id="current_humid">0</span></span>
+          <span style="margin-left: 20px;"> Current Humidity: <span id="current_humid">0</span> %</span>
           <canvas
             id="humid"
             style="display: block; height: 188px; width: 629px;  padding-right: 20px"

@@ -37,9 +37,10 @@ def scheduled_sql(room,update = None):
         for sensor in sensors:
             sql = ( f""" SELECT timestamp, data FROM
                     (SELECT sensors.node, sensor_data.sensor, sensor_data.timestamp, sensor_data.data 
-                        FROM sensors,sensor_data WHERE sensors.id = sensor_data.sensor ORDER BY timestamp DESC LIMIT 10)sub,
+                        FROM sensors,sensor_data WHERE sensors.id = '{sensor}' and sensor_data.sensor = '{sensor}'
+                        ORDER BY timestamp DESC LIMIT 10)sub,
                     nodes
-                    WHERE nodes.id = node and nodes.room = '{room}' and sensor = '{sensor}'
+                    WHERE nodes.id = node and nodes.room = '{room}' 
                     ORDER BY timestamp DESC LIMIT 1;
                     """)
             result = db.session.execute(sql)
@@ -50,16 +51,17 @@ def scheduled_sql(room,update = None):
                 data[sensor+"_data"] = ( x[1] )
 
         data = json.dumps(data)
-        # print(data)
+        #print(data)
 
     #on 1st reload
     else:
         for sensor in sensors:
             sql = ( f""" SELECT timestamp, data FROM 
                     (SELECT sensors.node, sensor_data.sensor, sensor_data.timestamp, sensor_data.data FROM 
-                        sensors,sensor_data WHERE sensors.id = sensor_data.sensor ORDER BY timestamp DESC LIMIT 30)sub,
+                        sensors,sensor_data WHERE sensors.id = '{sensor}' and sensor_data.sensor = '{sensor}'
+                        ORDER BY timestamp DESC LIMIT 30)sub,
                     nodes
-                    WHERE nodes.id = node and nodes.room = '{room}' and sensor = '{sensor}'
+                    WHERE nodes.id = node and nodes.room = '{room}' 
                     ORDER BY timestamp DESC LIMIT 10;
                     """)
             result = db.session.execute(sql)
@@ -70,7 +72,7 @@ def scheduled_sql(room,update = None):
                 data[sensor+"_data"].append( x[1] )
 
         data = json.dumps(data)
-        # print(data)
+        #print(data)
         
     return data
 

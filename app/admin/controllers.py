@@ -147,7 +147,7 @@ def mqtt_func(room,controller,event):
     
     # bms/room1/controller/1
     # client.subscribe("bms/"+room+"/controller/1")
-    message = {controller:event}
+    message = {controller:int(event)}
     message = json.dumps(message)
     client.publish("bms/"+room+"/controller/1",message)
 

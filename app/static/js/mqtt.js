@@ -1,8 +1,13 @@
-var fan = "";
-var lights = "";
+var fan;
+var lights;
 
 document.getElementById('lights').addEventListener('change', function() {
-    lights = this.value;
+    if (this.value === "OFF"){
+      lights = 0;
+    }else if(this.value === "ON"){
+      lights = 1;
+    }
+
     console.log('lights: ', lights);
 
     fetch("/admin/mqtt/"+room+"/lights/"+lights)
@@ -15,7 +20,11 @@ document.getElementById('lights').addEventListener('change', function() {
   });
 
 document.getElementById('fan').addEventListener('change', function() {
-  fan = this.value;
+  if (this.value === "OFF"){
+    fan = 0;
+  }else if(this.value === "ON"){
+    fan = 1;
+  }
   console.log('fan: ', fan);
   fetch("/admin/mqtt/"+room+"/fan/"+fan)
       .then(function (response) {
